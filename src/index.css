@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,600;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 14% 4%;
+    --foreground: 40 20% 96%;
+    --card: 240 12% 8%;
+    --card-foreground: 40 20% 96%;
+    --popover: 240 12% 8%;
+    --popover-foreground: 40 20% 96%;
+    --primary: 43 100% 56%;
+    --primary-foreground: 240 14% 4%;
+    --secondary: 240 8% 14%;
+    --secondary-foreground: 40 20% 96%;
+    --muted: 240 8% 14%;
+    --muted-foreground: 240 5% 62%;
+    --accent: 43 100% 56%;
+    --accent-foreground: 240 14% 4%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 7% 18%;
+    --input: 240 7% 18%;
+    --ring: 43 100% 56%;
+    --radius: 0.75rem;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Anton', 'Arial Narrow', Impact, sans-serif;
+  }
+
+  .font-mono2 {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+}
+
+/* ---- keyframes ---- */
+@keyframes ding-pop {
+  0% { transform: scale(0.4) translateY(10px); opacity: 0; }
+  60% { transform: scale(1.08) translateY(-2px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes ding-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 198, 41, 0.55); }
+  50% { box-shadow: 0 0 0 8px rgba(255, 198, 41, 0); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+  50% { transform: translateY(-14px) rotate(var(--tilt, 0deg)); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.anim-ding-pop { animation: ding-pop 0.5s cubic-bezier(0.22, 1.4, 0.36, 1) both; }
+.anim-ding-pulse { animation: ding-pulse 2.2s ease-in-out infinite; }
+.anim-float { animation: float-slow 6s ease-in-out infinite; }
+.anim-blink { animation: blink-dot 1.4s ease-in-out infinite; }
+
+.marquee-track {
+  animation: marquee 26s linear infinite;
+}
+
+/* ---- scroll reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- script typography ---- */
+.dir-text {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-style: italic;
+  color: #8b8b9e;
+}
